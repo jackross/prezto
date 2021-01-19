@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 #
 # Executes commands at the start of an interactive session.
 #
@@ -11,3 +18,47 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Customize to your needs...
+
+# export ZPLUG_HOME=~/.zplug
+# source $ZPLUG_HOME/init.zsh
+
+# # Plugins
+# zplug "plugins/git",    from:oh-my-zsh
+# zplug "plugins/osx",    from:oh-my-zsh
+# zplug "plugins/heroku", from:oh-my-zsh
+# zplug "zsh-users/zsh-autosuggestions"
+# zplug "clvv/fasd"
+# zplug "b4b4r07/enhancd"
+# zplug "junegunn/fzf"
+# zplug "Peltoche/lsd"
+# zplug "g-plane/zsh-yarn-autocompletions"
+# zplug "romkatv/powerlevel10k", as:theme, depth:1
+# zplug "MichaelAquilina/zsh-you-should-use"
+
+# zplug load
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Jack's updates
+export PATH="/usr/local/opt/ruby/bin:$PATH"
+export PATH="/usr/local/lib/ruby/gems/2.6.0/bin:$PATH"
+export PATH="/usr/local/opt/sqlite/bin:$PATH"
+
+alias pgcevq='heroku pgcli EVENT_STORE_DATABASE_URL -a tkxs-qa-event-store'
+alias pgcevs='heroku pgcli EVENT_STORE_DATABASE_URL -a tkxs-stage-event-store'
+alias pgcevp='heroku pgcli EVENT_STORE_DATABASE_URL -a tkxs-prod-event-store'
+alias pgcvdq='heroku pgcli VIEW_DATA_DATABASE_URL   -a tkxs-qa-event-store'
+alias pgcvds='heroku pgcli VIEW_DATA_DATABASE_URL   -a tkxs-stage-event-store'
+alias pgcvdp='heroku pgcli VIEW_DATA_DATABASE_URL   -a tkxs-prod-event-store'
+
+alias pgievd='heroku pgcli EVENT_STORE_DATABASE_URL -a tkxs-dev-incent-event-store'
+
+alias cat='bat'
+
+alias ls='lsd'
+alias ll='lsd -la'
+alias f='fzf --preview "bat --color \"always\" {}"'
+alias top='glances'
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
